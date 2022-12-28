@@ -10,6 +10,10 @@ export class UserRepository {
     @InjectModel('user') private readonly userModel: Model<UserDocument>,
   ) {}
 
+  getOne(query: object): Promise<UserDocument> {
+    return this.userModel.findOne(query).exec();
+  }
+
   create(userData: UserDto): Promise<UserDocument> {
     return this.userModel.create(userData);
   }
