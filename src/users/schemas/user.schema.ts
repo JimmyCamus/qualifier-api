@@ -20,7 +20,7 @@ export const UserSchema = new Schema({
 
 UserSchema.methods.toJSON = function () {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { __v, _id, ...userData } = this.toObject();
+  const { __v, _id, password, ...userData } = this.toObject();
   userData.id = _id;
   return userData;
 };
