@@ -1,9 +1,12 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import helmet from 'helmet';
+import { ConfigService } from '@nestjs/config';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  const configService = app.get(ConfigService);
+  const port = configService.get<number>('PORT') ?? 8080;
   app.enableCors();
   app.use(helmet());
   app.enableCors({
@@ -15,6 +18,6 @@ async function bootstrap() {
     ],
     methods: ['GET', 'DELETE', 'PUT', 'POST'],
   });
-  await app.listen(8080);
+  await app.listen(port);
 }
 bootstrap();
