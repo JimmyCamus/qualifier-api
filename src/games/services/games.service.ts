@@ -17,7 +17,6 @@ export class GamesService {
     if (query.categories) {
       sanatizedQuery = { ...query, categories: { $all: query.categories } };
     }
-    console.log(sanatizedQuery);
     return await this.gameRepository.getMany(sanatizedQuery);
   }
 
