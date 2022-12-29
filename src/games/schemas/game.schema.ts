@@ -7,6 +7,26 @@ export const GameSchema = new Schema({
     unique: true,
     require: true,
   },
+  description: {
+    type: String,
+    require: true,
+  },
+  rating: {
+    type: Number,
+    default: 0,
+  },
+  images: {
+    type: Array<any>,
+    default: [],
+  },
+  comments: {
+    type: Array<any>,
+    default: [],
+  },
+  categories: {
+    type: Array<string>,
+    default: [],
+  },
 });
 
 GameSchema.methods.toJSON = function () {

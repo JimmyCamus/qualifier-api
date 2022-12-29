@@ -5,16 +5,26 @@ import { GameDto } from '../dto/game.dto';
 import { GameDocument } from '../interfaces/game.document';
 
 @Injectable()
-export class UserRepository {
+export class GameRepository {
   constructor(
     @InjectModel('game') private readonly gameModel: Model<GameDocument>,
   ) {}
+
+  getMany(query: object): Promise<GameDocument[]> {
+    return this.gameModel.find(query).exec();
+  }
 
   getOne(query: object): Promise<GameDocument> {
     return this.gameModel.findOne(query).exec();
   }
 
-  create(userData: GameDto): Promise<GameDocument> {
-    return this.gameModel.create(userData);
+  create(gameData: GameDto): Promise<GameDocument> {
+    return this.gameModel.create(gameData);
+  }
+
+  update(filters: object, updateData: object): Promise<GameDocument> {
+    return this.gameModel
+      .findOneAndUpdate(filters, updateData, { new: true })
+      .exec();
   }
 }
