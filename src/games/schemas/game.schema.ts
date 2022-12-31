@@ -16,7 +16,7 @@ export const GameSchema = new Schema({
     default: 0,
   },
   images: {
-    type: Array<any>,
+    type: Array<string>,
     default: [],
   },
   comments: {

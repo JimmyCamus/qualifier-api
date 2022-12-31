@@ -1,4 +1,15 @@
-import { Body, Controller, Get, Param, Post, Put, Query } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Post,
+  Put,
+  Query,
+  UploadedFiles,
+  UseInterceptors,
+} from '@nestjs/common';
+import { FilesInterceptor } from '@nestjs/platform-express';
 import { AllGameEntries, GameDto, UpdateGameDto } from '../dto/game.dto';
 import { GameDocument } from '../interfaces/game.document';
 import { GamesService } from '../services/games.service';
@@ -28,5 +39,14 @@ export class GamesController {
     @Body() body: UpdateGameDto,
   ): Promise<GameDocument> {
     return await this.gamesService.updateGame(gameId, body);
+  }
+
+  @Put(':id/images')
+  @UseInterceptors(FilesInterceptor('files'))
+  async uploadImages(
+    @Param('id') gameId: number,
+    @UploadedFiles() files: Array<Express.Multer.File>,
+  ) {
+    return this.gamesService.addFiles(gameId, files);
   }
 }
