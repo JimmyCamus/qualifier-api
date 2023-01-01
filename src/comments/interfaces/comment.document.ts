@@ -6,4 +6,5 @@ export interface CommentDocument extends Document {
   description: string;
   rating: number;
   user: User;
+  status: boolean;
 }

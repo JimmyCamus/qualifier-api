@@ -5,4 +5,5 @@ export interface Comment {
   description: string;
   rating: number;
   user: User;
+  status: boolean;
 }
