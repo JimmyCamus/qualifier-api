@@ -1,4 +1,14 @@
-import { Body, Controller, Get, Param, Post, Put, Query } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Post,
+  Put,
+  Query,
+  UseGuards,
+} from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { AllCommentEntires, CommentDto } from '../dto/comment.dto';
 import { CommentDocument } from '../interfaces/comment.document';
 import { CommentsService } from '../services/comments.service';
@@ -20,6 +30,7 @@ export class CommentsController {
   }
 
   @Post('/:gameId')
+  @UseGuards(AuthGuard('jwt'))
   async createComment(
     @Param('gameId') gameId: number,
     @Body() body: CommentDto,
@@ -28,6 +39,7 @@ export class CommentsController {
   }
 
   @Put(':id')
+  @UseGuards(AuthGuard('jwt'))
   async upateComment(
     @Param('id') commentId: number,
     @Body() body: AllCommentEntires,
@@ -36,6 +48,7 @@ export class CommentsController {
   }
 
   @Put(':id/delete')
+  @UseGuards(AuthGuard('jwt'))
   async deleteComment(
     @Param('id') commentId: number,
   ): Promise<CommentDocument> {
