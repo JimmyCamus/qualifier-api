@@ -35,7 +35,10 @@ export class GamesService {
     return await this.gameRepository.create(gameData);
   }
 
-  async updateGame(gameId: number, gameData: GameDto): Promise<GameDocument> {
+  async updateGame(
+    gameId: number,
+    gameData: GameDto | object,
+  ): Promise<GameDocument> {
     return await this.gameRepository.update({ _id: gameId }, gameData);
   }
 

@@ -1,4 +1,5 @@
 import { IsNumber, IsOptional, IsString } from 'class-validator';
+import { User } from 'src/users/interfaces/user';
 
 export class CommentDto {
   @IsString()
@@ -8,10 +9,10 @@ export class CommentDto {
   rating: number;
 
   @IsString()
-  user: string;
+  user: User;
 }
 
-export class UpdateCommentDto {
+export class AllCommentEntires {
   @IsOptional()
   description: string;
 
@@ -19,5 +20,5 @@ export class UpdateCommentDto {
   rating: number;
 
   @IsOptional()
-  user: string;
+  user: User;
 }
