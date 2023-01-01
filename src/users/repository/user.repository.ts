@@ -7,7 +7,7 @@ import { UserDocument } from '../interfaces/user.document';
 @Injectable()
 export class UserRepository {
   constructor(
-    @InjectModel('user') private readonly userModel: Model<UserDocument>,
+    @InjectModel('User') private readonly userModel: Model<UserDocument>,
   ) {}
 
   getOne(query: object): Promise<UserDocument> {

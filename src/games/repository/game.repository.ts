@@ -7,7 +7,7 @@ import { GameDocument } from '../interfaces/game.document';
 @Injectable()
 export class GameRepository {
   constructor(
-    @InjectModel('game') private readonly gameModel: Model<GameDocument>,
+    @InjectModel('Game') private readonly gameModel: Model<GameDocument>,
   ) {}
 
   getMany(query: object): Promise<GameDocument[]> {
