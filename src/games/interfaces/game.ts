@@ -3,7 +3,7 @@ export interface Game {
   title: string;
   description: string;
   rating: number;
-  images: Array<any>;
+  images: Array<string>;
   comments: Array<any>;
   categories: Array<string>;
 }
