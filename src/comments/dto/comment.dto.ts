@@ -9,6 +9,7 @@ export class CommentDto {
   rating: number;
 
   @IsString()
+  @IsOptional()
   user: User;
 }
 

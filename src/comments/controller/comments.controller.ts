@@ -6,6 +6,7 @@ import {
   Post,
   Put,
   Query,
+  Request,
   UseGuards,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
@@ -34,7 +35,9 @@ export class CommentsController {
   async createComment(
     @Param('gameId') gameId: number,
     @Body() body: CommentDto,
+    @Request() req: any,
   ): Promise<CommentDocument> {
+    body['user'] = req.user.id;
     return this.commentsService.createComment(gameId, body);
   }
 
