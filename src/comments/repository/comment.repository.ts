@@ -7,7 +7,7 @@ import { CommentDocument } from '../interfaces/comment.document';
 @Injectable()
 export class CommentRepository {
   constructor(
-    @InjectModel('comment')
+    @InjectModel('Comment')
     private readonly commentModel: Model<CommentDocument>,
   ) {}
   getMany(query: object): Promise<CommentDocument[]> {
