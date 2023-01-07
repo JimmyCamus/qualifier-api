@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { UserDocument } from 'src/users/interfaces/user.document';
 import { GameDto } from '../dto/game.dto';
 import { GameDocument } from '../interfaces/game.document';
 
@@ -8,6 +9,7 @@ import { GameDocument } from '../interfaces/game.document';
 export class GameRepository {
   constructor(
     @InjectModel('Game') private readonly gameModel: Model<GameDocument>,
+    @InjectModel('User') private readonly userModel: Model<UserDocument>,
   ) {}
 
   getMany(query: object): Promise<GameDocument[]> {
@@ -15,7 +17,15 @@ export class GameRepository {
   }
 
   getOne(query: object): Promise<GameDocument> {
-    return this.gameModel.findOne(query).exec();
+    return this.gameModel
+      .findOne(query)
+      .populate('comments')
+      .populate({
+        path: 'comments.user',
+        select: 'username',
+        model: this.userModel,
+      })
+      .exec();
   }
 
   create(gameData: GameDto): Promise<GameDocument> {
