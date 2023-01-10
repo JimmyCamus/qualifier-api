@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   Post,
@@ -50,7 +51,7 @@ export class CommentsController {
     return await this.commentsService.updateComment(commentId, body);
   }
 
-  @Put(':id/delete')
+  @Delete(':id')
   @UseGuards(AuthGuard('jwt'))
   async deleteComment(
     @Param('id') commentId: number,
