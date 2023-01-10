@@ -15,6 +15,10 @@ export const GameSchema = new Schema({
     type: Number,
     default: 0,
   },
+  allRatings: {
+    type: Number,
+    default: 0,
+  },
   images: {
     type: Array<string>,
     default: [],

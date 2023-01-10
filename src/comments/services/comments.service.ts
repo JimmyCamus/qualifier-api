@@ -24,8 +24,16 @@ export class CommentsService {
   ): Promise<CommentDocument> {
     const comment = await this.commentRepository.create(commentData);
 
+    const gameData = await this.gamesService.getGame(gameId);
+
+    const newRating = Math.floor(
+      (gameData.allRatings + comment.rating) / (gameData.comments.length + 1),
+    );
+
     await this.gamesService.updateGame(gameId, {
       $push: { comments: comment },
+      rating: newRating,
+      allRatings: gameData.allRatings + comment.rating,
     });
 
     return comment;
