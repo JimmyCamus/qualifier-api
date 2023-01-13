@@ -10,7 +10,7 @@ export class GameDto {
   description: string;
 
   @IsNumber()
-  @IsNotEmpty()
+  @IsOptional()
   rating: number;
 
   images: Array<any>;
