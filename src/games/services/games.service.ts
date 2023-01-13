@@ -28,6 +28,14 @@ export class GamesService {
     if (query.categories) {
       sanatizedQuery = { ...query, categories: { $all: query.categories } };
     }
+
+    if (query.title) {
+      sanatizedQuery = {
+        ...query,
+        ...sanatizedQuery,
+        title: { $regex: query.title, $options: 'i' },
+      };
+    }
     return await this.gameRepository.getMany(sanatizedQuery);
   }
 
