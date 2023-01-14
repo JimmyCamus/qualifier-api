@@ -1,5 +1,9 @@
 # Games Qualifier API
 
+## Summary
+
+In this project, an API is developed to manage the control of a video game review app.
+
 ## Features
 
 ### Auth Endpoints
