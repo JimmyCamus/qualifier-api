@@ -37,6 +37,10 @@ Endpoints are exposed to perform a crud of comment, which have the following dat
   status: boolean;
 }`
 
+## Documentation
+
+To see the documentation go here -> <https://documenter.getpostman.com/view/19464642/2s8ZDSc5jR>
+
 ## How to Run
 
 ### Clone the repo
