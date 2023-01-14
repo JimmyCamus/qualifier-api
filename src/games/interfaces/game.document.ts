@@ -7,6 +7,6 @@ export interface GameDocument extends Document {
   rating: number;
   allRatings: number;
   images: Array<string>;
-  comments: Array<any>;
+  comments: Array<Comment>;
   categories: Array<string>;
 }
